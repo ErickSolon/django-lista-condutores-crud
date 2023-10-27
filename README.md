@@ -1,2 +1,2 @@
 # django-lista-condutores-crud
-REST API, Django, Postgresql
+REST API, Django, Postgresql, react
