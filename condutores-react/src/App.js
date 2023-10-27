@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import Condutores from './views/Condutores';
 import Navbar from './components/Navbar';
+import AddCondutor from './views/AddCondutor';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route path="" Component={Home}></Route>
             <Route path="condutores" Component={Condutores}></Route>
+            <Route path="addCondutor" Component={AddCondutor}></Route>
           </Routes>
         </BrowserRouter>
       </header>

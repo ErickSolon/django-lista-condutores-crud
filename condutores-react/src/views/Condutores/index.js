@@ -39,6 +39,13 @@ export default function Condutores() {
 
   return (
     <>
+      <button
+        className="btn btn-primary"
+        onClick={() => (window.location.href = "addCondutor")}
+      >
+        Adicionar Condutor
+      </button>
+
       <Tabela dados={dados} />
 
       <button
