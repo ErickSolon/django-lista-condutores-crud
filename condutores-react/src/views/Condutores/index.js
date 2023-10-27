@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Tabela from "../../components/Tabela";
+import TabelaCondutores from "../../components/TabelaCondutores";
 import CondutoresService from "../../services/condutoresservice";
+import Add from "@mui/icons-material/Add";
+import { PaginationComponent } from "../../components/PaginationComponent";
+import { BtnRedirectionComponent } from "../../components/BtnRedirectionComponent";
+import "./condutores.css";
 
 export default function Condutores() {
   const [dados, setDados] = useState([]);
   const [pagina, setPagina] = useState(1);
-  const [itensPorPagina] = useState(5);
-  const [QtdItens, setQtdItens] = useState(0);
+  const [totalDePaginas, setTotalDePaginas] = useState(0);
 
   useEffect(() => {
     const carregarDados = async () => {
       try {
         const response = await CondutoresService.getAll(pagina);
         setDados(response.data.results);
-        setQtdItens(response.data.count);
+
+        const totalPaginas = Math.ceil(response.data.count / 5);
+        setTotalDePaginas(totalPaginas);
       } catch (error) {
         console.error("Erro ao carregar dados:", error);
       }
@@ -22,51 +27,33 @@ export default function Condutores() {
     carregarDados();
   }, [pagina]);
 
-  const indiceInicial = (pagina - 1) * itensPorPagina + 1;
-  const indiceFinal = Math.min(indiceInicial + itensPorPagina - 1, QtdItens);
-
-  const handleNextPage = () => {
-    if (pagina < Math.ceil(QtdItens / itensPorPagina)) {
-      setPagina(pagina + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (pagina > 1) {
-      setPagina(pagina - 1);
-    }
+  const handlePage = (event, value) => {
+    setPagina(value);
   };
 
   return (
     <>
-      <button
-        className="btn btn-primary"
-        onClick={() => (window.location.href = "addCondutor")}
-      >
-        Adicionar Condutor
-      </button>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div className="addBtnStyle">
+              <BtnRedirectionComponent link={"addCondutor"} icone={<Add />} />
+            </div>
 
-      <Tabela dados={dados} />
+            <TabelaCondutores dados={dados} />
 
-      <button
-        type="button"
-        className={`btn btn-primary ${pagina === 1 ? "disabled" : ""}`}
-        onClick={handlePreviousPage}
-      >
-        Anterior
-      </button>
-
-      <label>{`Exibindo ${indiceInicial}-${indiceFinal} de ${QtdItens} itens`}</label>
-
-      <button
-        type="button"
-        className={`btn btn-primary ${
-          pagina >= Math.ceil(QtdItens / itensPorPagina) ? "disabled" : ""
-        }`}
-        onClick={handleNextPage}
-      >
-        Próximo
-      </button>
+            <div class="position-relative">
+              <div class="position-absolute top-50 start-50 translate-middle paginationStyle">
+                <PaginationComponent
+                  totalPaginas={totalDePaginas}
+                  pagina={pagina}
+                  handle={handlePage}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

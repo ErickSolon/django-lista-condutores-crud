@@ -15,7 +15,10 @@ function App() {
             <Route path="" Component={Home}></Route>
             <Route path="condutores" Component={Condutores}></Route>
             <Route path="addCondutor" Component={AddCondutor}></Route>
-            <Route path="updateCondutor/:idParam" Component={UpdateCondutor}></Route>
+            <Route
+              path="updateCondutor/:idParam"
+              Component={UpdateCondutor}
+            ></Route>
           </Routes>
         </BrowserRouter>
       </header>

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import condutoresservice from "../../services/condutoresservice";
+import Button from "@mui/material/Button";
+import UpdateSharp from "@mui/icons-material/UpdateSharp";
 
 export default function UpdateCondutor() {
   const { idParam } = useParams();
@@ -10,8 +12,8 @@ export default function UpdateCondutor() {
     placa: "",
     marca: "",
     nome: "",
-    sobrenome: "", 
-    cpf: "", 
+    sobrenome: "",
+    cpf: "",
   });
 
   const changePlacaHandler = (event) => {
@@ -23,7 +25,7 @@ export default function UpdateCondutor() {
   };
 
   const changeNomeHandler = (event) => {
-    setState({ ...state, nome: event.target.value }); 
+    setState({ ...state, nome: event.target.value });
   };
 
   const changeSobrenomeHandler = (event) => {
@@ -80,91 +82,94 @@ export default function UpdateCondutor() {
     }
   };
 
-
   return (
     <>
-      <div class="container">
-        <form>
-          <div class="mb-3 row">
-            <label for="inputPlaca" class="col-4 col-form-label">
-              Placa
-            </label>
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                name="inputPlaca"
-                id="inputPlaca"
-                placeholder="Placa"
-                value={state.placa}
-                onChange={changePlacaHandler}
-              />
-            </div>
-            <label for="inputMarca" class="col-4 col-form-label">
-              Marca
-            </label>
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                name="inputMarca"
-                id="inputMarca"
-                placeholder="Marca"
-                value={state.marca}
-                onChange={changeMarcaHandler}
-              />
-            </div>
-            <label for="inputNome" class="col-4 col-form-label">
-              Nome
-            </label>
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                name="inputNome"
-                id="inputNome"
-                placeholder="Nome"
-                value={state.nome}
-                onChange={changeNomeHandler}
-              />
-            </div>
-            <label for="inputSobrenome" class="col-4 col-form-label">
-              Sobrenome
-            </label>
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                name="inputSobrenome"
-                id="inputSobrenome"
-                placeholder="Sobrenome"
-                value={state.sobrenome}
-                onChange={changeSobrenomeHandler}
-              />
-            </div>
-            <label for="inputCPF" class="col-4 col-form-label">
-              CPF
-            </label>
-            <div class="col-8">
-              <input
-                type="text"
-                class="form-control"
-                name="inputCPF"
-                id="inputCPF"
-                placeholder="CPF"
-                value={state.cpf}
-                onChange={changeCPFHandler}
-              />
-            </div>
+      <div class="container p-5">
+        <div class="mb-3 row">
+          <label for="inputPlaca" class="col-4 col-form-label">
+            Placa
+          </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              name="inputPlaca"
+              id="inputPlaca"
+              placeholder="Placa"
+              value={state.placa}
+              onChange={changePlacaHandler}
+            />
           </div>
-          <div class="mb-3 row">
-            <div class="offset-sm-4 col-sm-8">
-              <button type="submit" class="btn btn-primary" onClick={update}>
-                Atualizar
-              </button>
-            </div>
+          <label for="inputMarca" class="col-4 col-form-label">
+            Marca
+          </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              name="inputMarca"
+              id="inputMarca"
+              placeholder="Marca"
+              value={state.marca}
+              onChange={changeMarcaHandler}
+            />
           </div>
-        </form>
+          <label for="inputNome" class="col-4 col-form-label">
+            Nome
+          </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              name="inputNome"
+              id="inputNome"
+              placeholder="Nome"
+              value={state.nome}
+              onChange={changeNomeHandler}
+            />
+          </div>
+          <label for="inputSobrenome" class="col-4 col-form-label">
+            Sobrenome
+          </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              name="inputSobrenome"
+              id="inputSobrenome"
+              placeholder="Sobrenome"
+              value={state.sobrenome}
+              onChange={changeSobrenomeHandler}
+            />
+          </div>
+          <label for="inputCPF" class="col-4 col-form-label">
+            CPF
+          </label>
+          <div class="col-8">
+            <input
+              type="text"
+              class="form-control"
+              name="inputCPF"
+              id="inputCPF"
+              placeholder="CPF"
+              value={state.cpf}
+              onChange={changeCPFHandler}
+            />
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="offset-sm-4 col-sm-8">
+            <Button
+              variant="contained"
+              color="warning"
+              type="submit"
+              onClick={update}
+              startIcon={<UpdateSharp />}
+            >
+              Atualizar
+            </Button>
+          </div>
+        </div>
       </div>
     </>
   );
