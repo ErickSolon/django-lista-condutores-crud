@@ -23,7 +23,7 @@ class VeiculosSerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         condutor_data = validated_data.pop('condutor')
-        condutor_instance = Condutor
+        condutor_instance = instance.condutor
         
         instance.marca = validated_data.get('marca', instance.marca)
         instance.placa = validated_data.get('placa', instance.placa)
@@ -32,5 +32,6 @@ class VeiculosSerializer(serializers.ModelSerializer):
         condutor_instance.nome = condutor_data.get('nome', condutor_instance.nome)
         condutor_instance.sobrenome = condutor_data.get('sobrenome', condutor_instance.sobrenome)
         condutor_instance.cpf = condutor_data.get('cpf', condutor_instance.cpf)
+        condutor_instance.save()
         
-        return instance;
+        return instance

@@ -1,9 +1,9 @@
-import condutoresservice from "../../services/condutoresservice";
-import react, { Component } from "react";
+import condutoresservice from "../../services/condutoresservice"
+import react, { Component } from "react"
 
 export default class AddCondutor extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       placa: "",
@@ -11,37 +11,37 @@ export default class AddCondutor extends Component {
       nome: "",
       sobrenome: "",
       cpf: "",
-    };
+    }
 
-    this.changePlacaHandler = this.changePlacaHandler.bind(this);
-    this.changeMarcaHandler = this.changeMarcaHandler.bind(this);
-    this.changeNomeHandler = this.changeNomeHandler.bind(this);
-    this.changeSobrenomeHandler = this.changeSobrenomeHandler.bind(this);
-    this.changeCPFHandler = this.changeCPFHandler.bind(this);
+    this.changePlacaHandler = this.changePlacaHandler.bind(this)
+    this.changeMarcaHandler = this.changeMarcaHandler.bind(this)
+    this.changeNomeHandler = this.changeNomeHandler.bind(this)
+    this.changeSobrenomeHandler = this.changeSobrenomeHandler.bind(this)
+    this.changeCPFHandler = this.changeCPFHandler.bind(this)
   }
 
   changePlacaHandler = (event) => {
-    this.setState({ placa: event.target.value });
-  };
+    this.setState({ placa: event.target.value })
+  }
 
   changeMarcaHandler = (event) => {
-    this.setState({ marca: event.target.value });
-  };
+    this.setState({ marca: event.target.value })
+  }
 
   changeNomeHandler = (event) => {
-    this.setState({ nome: event.target.value });
-  };
+    this.setState({ nome: event.target.value })
+  }
 
   changeSobrenomeHandler = (event) => {
-    this.setState({ sobrenome: event.target.value });
-  };
+    this.setState({ sobrenome: event.target.value })
+  }
 
   changeCPFHandler = (event) => {
-    this.setState({ cpf: event.target.value });
-  };
+    this.setState({ cpf: event.target.value })
+  }
 
   saveCondutor = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
       const condutorData = {
@@ -52,7 +52,7 @@ export default class AddCondutor extends Component {
           sobrenome: this.state.sobrenome,
           cpf: this.state.cpf,
         },
-      };
+      }
 
       if (
         this.state.placa === "" ||
@@ -61,10 +61,10 @@ export default class AddCondutor extends Component {
         this.state.sobrenome === "" ||
         this.state.cpf === ""
       ) {
-        alert("Digite todos os campos!");
+        alert("Digite todos os campos!")
       } else {
-        await condutoresservice.save(condutorData);
-        alert("Pessoa salva com sucesso!");
+        await condutoresservice.save(condutorData)
+        alert("Pessoa salva com sucesso!")
       }
 
       this.setState({
@@ -73,12 +73,12 @@ export default class AddCondutor extends Component {
         nome: "",
         sobrenome: "",
         cpf: "",
-      });
+      })
     } catch (error) {
-      console.error("Erro ao salvar pessoa:", error);
-      alert("Ocorreu um erro ao salvar a pessoa.");
+      console.error("Erro ao salvar pessoa:", error)
+      alert("Ocorreu um erro ao salvar a pessoa.")
     }
-  };
+  }
 
   render() {
     return (
@@ -171,6 +171,6 @@ export default class AddCondutor extends Component {
           </form>
         </div>
       </>
-    );
+    )
   }
 }

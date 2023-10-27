@@ -41,7 +41,7 @@ export default function Tabela(props) {
                           </a>
                           <a
                             className="btn btn-primary"
-                            href={`http://127.0.0.1:8000/veiculos/${e.id}`}
+                            href={`updateCondutor/${e.id}`}
                           >
                             Update
                           </a>

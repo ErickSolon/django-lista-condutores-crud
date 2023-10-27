@@ -8,7 +8,7 @@ class CondutoresService {
   }
 
   getById(id) {
-    return axios.get(`${this.baseURL}/${id}`);
+    return axios.get(`${this.baseURL}/${id}/`);
   }
 
   deleteById(id) {
@@ -16,7 +16,7 @@ class CondutoresService {
   }
 
   updateById(id, dado) {
-    return axios.put(`${this.baseURL}/${id}`, dado);
+    return axios.put(`${this.baseURL}/${id}/`, dado);
   }
 
   save(dado) {
